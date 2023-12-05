@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func CubeConundrum(game string) (int, bool) {
+func CubeConundrumPartOne(game string) (int, bool) {
 	gameCubes := map[string]int{"red": 12, "green": 13, "blue": 14}
 	line := strings.Split(game, ":")
 
@@ -26,6 +26,32 @@ func CubeConundrum(game string) (int, bool) {
 	}
 
 	return gameId, true
+}
+
+func CubeConundrumPartTwo(game string) int {
+	gameCubes := make(map[string]int)
+	line := strings.Split(game, ":")
+
+	gameInfo := line[1]
+
+	rounds := strings.Split(gameInfo, ";")
+
+	for _, round := range rounds {
+		roundData := strings.Split(round, ",")
+		for _, roundDataItem := range roundData {
+			cube, num := getNumberAndString(strings.Trim(roundDataItem, " "))
+			if gameCubes[cube] < num {
+				gameCubes[cube] = num
+			}
+		}
+	}
+
+	product := 1
+	for _, value := range gameCubes {
+		product *= value
+	}
+
+	return product
 }
 
 func getNumberAndString(s string) (string, int) {

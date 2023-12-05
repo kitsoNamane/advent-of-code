@@ -18,9 +18,10 @@ func main() {
 	scan := bufio.NewScanner(file)
 
 	for scan.Scan() {
-		if gameId, isPossible := day_two.CubeConundrum(scan.Text()); isPossible {
-			count += gameId
-		}
+		// if gameId, isPossible := day_two.CubeConundrumPartOne(scan.Text()); isPossible {
+		// 	count += gameId
+		// }
+		count += day_two.CubeConundrumPartTwo(scan.Text())
 	}
 
 	fmt.Println(count)
